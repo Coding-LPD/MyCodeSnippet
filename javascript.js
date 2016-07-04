@@ -20,11 +20,11 @@
  * params: 数组     要代入的参数数组,params[0]替换字符串中的{0},依次类推
  */
 function stringReplace(str, params) {
-    var i, exp;
+    var i, reg;
     
-    for (i=0; i<params.length; i++) {
-        exp = '{' + i + '}';
-        str = str.replace(exp, params[i]);
+    for (i=0; i<params.length; i++) {        
+        reg = new RegExp('\\{' + i + '\\}', 'g');
+        str = str.replace(reg, params[i]);
     }
     return str;
 }
