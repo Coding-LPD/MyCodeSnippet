@@ -9,6 +9,7 @@
 /* 随机算法相关 */
 /* jquery相关 */
 /* 网络相关 */
+/* 文件相关 */
 
 
 
@@ -131,4 +132,32 @@ function queryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg);  //匹配目标参数
     if (r != null) return decodeURI(r[2]); return null; //返回参数值
+}
+
+
+
+/* 文件相关 */
+
+/**
+ * 将本地图片地址转换为当前页面可用的url
+ * file: input file类型的DOM对象的属性files集合中的一个对象，表示选中的文件
+ */
+function getImageUrl(file) {
+    // 图片大小的限制    
+    // if(file.size > 1024 * 1024 * 2) {
+    //     alert('图片大小不能超过 2MB!');
+    //     return false;
+    // }
+    var URL = window.URL || window.webkitURL;
+    var imgURL = URL.createObjectURL(file);
+    return imgURL;
+}
+
+/**
+ * 获取文件名的后缀(包括'.')
+ * filename: 原始文件名
+ */
+function getFileExtension(filename) {
+    var lastDot = filename.lastIndexOf('.');
+    return filename.slice(lastDot);
 }
